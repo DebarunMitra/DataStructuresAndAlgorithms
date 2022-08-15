@@ -39,6 +39,65 @@ public class SingleLinkedList {
         return list;
     }
 
+    // Method to insert a new node
+    public static SingleLinkedList insertByPosition(SingleLinkedList list, int value, int position) {
+        // Create a new node with given data
+        Node newNode = new Node(value);
+
+        // If the Linked List is empty, then make the new node as head
+        if (list.head == null) {
+            list.head = newNode;
+        }else {
+            System.out.println("Insert:"+ value);
+            Node currentNode = list.head, nextNode = null;
+            int counter=1;
+
+            while(currentNode != null && position>=counter){
+                nextNode = currentNode.next;
+                if(position == 1){
+                    System.out.println("Replace Value:"+ currentNode.data);
+                    newNode.next = currentNode;
+                    list.head = newNode;
+                    break;
+                }else if(position-1==counter || position == 1){
+                    System.out.println("Replace Value:"+ currentNode.data);
+                    currentNode.next = newNode;
+                    newNode.next = nextNode;
+                    break;
+                }
+                currentNode = currentNode.next;
+                counter++;
+            }
+        }
+
+        return list;
+    }
+
+    // Method to remove an element from a single linked list
+    public static SingleLinkedList remove(SingleLinkedList list, int value) {
+
+        Node currentNode = list.head, nextNode = null;
+
+        while(currentNode != null){
+            System.out.println("Current Value:"+ currentNode.data);
+            nextNode = currentNode.next;
+            if(nextNode == null) {
+                System.out.println("Key Not Found!");
+                break;
+            }else if(currentNode.data == value){
+                System.out.println("Found Head:"+ currentNode.next);
+                list.head = currentNode.next;
+                return list;
+            }else if(nextNode.data == value){
+                System.out.println("Found Head:"+ nextNode.next);
+                currentNode.next = nextNode.next;
+                break;
+            }
+            currentNode = currentNode.next;
+        }
+        return list;
+    }
+
     // Method to traverse a single linked list
     public static void traverse(SingleLinkedList list) {
         Node node = list.head;
@@ -68,6 +127,16 @@ public class SingleLinkedList {
         list = insert(list, 8);
 
         // Print the LinkedList
+        traverse(list);
+
+//        //remove an element
+//        remove(list, 1);
+//        // Print the LinkedList after one element removal
+//        traverse(list);
+
+        //insert by position start from 1
+        insertByPosition(list, 100, 1);
+        // Print the LinkedList after one element insertion by position
         traverse(list);
     }
 }
