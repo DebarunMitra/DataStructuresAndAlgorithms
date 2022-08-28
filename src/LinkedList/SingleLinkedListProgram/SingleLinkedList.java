@@ -110,6 +110,27 @@ public class SingleLinkedList {
         }
     }
 
+    // Method to traverse a single linked list
+    public static SingleLinkedList reverse(SingleLinkedList list) {
+        Node firstNode = list.head,
+             secondNode = firstNode.next;
+        System.out.println("Reverse Single Linked List: ");
+
+        //Loop till last node
+        while(secondNode != null){
+//            System.out.println("["+secondNode.data+" | "+secondNode.next+"]->");
+            Node tempNode = secondNode.next;
+            secondNode.next = firstNode;
+            firstNode = secondNode;
+            secondNode = tempNode;
+        }
+
+        list.head.next = null;
+        list.head = firstNode;
+
+        return list;
+    }
+
     //Main method
     public static void main(String[] args)
     {
@@ -135,8 +156,12 @@ public class SingleLinkedList {
 //        traverse(list);
 
         //insert by position start from 1
-        insertByPosition(list, 100, 1);
+//        insertByPosition(list, 100, 1);
         // Print the LinkedList after one element insertion by position
+
+
+        //reverse the linked list
+        list = reverse(list);
         traverse(list);
     }
 }
