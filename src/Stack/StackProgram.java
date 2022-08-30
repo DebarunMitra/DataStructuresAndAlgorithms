@@ -1,5 +1,7 @@
 package Stack;
 
+import java.util.EmptyStackException;
+
 public class StackProgram {
 
     private Node top;
@@ -24,8 +26,28 @@ public class StackProgram {
     }
 
     //pop
+    public int pop(){
+        if(length==0){
+            throw new EmptyStackException();
+        }
+
+        Node stackTopNode = top;
+        top = top.getNext();
+        length--;
+        if(length==0){
+            bottom=null;
+        }
+
+        return stackTopNode.getValue();
+    }
 
     //peek
+    public int peek() {
+        if(length == 0) {
+            throw new EmptyStackException();
+        }
+        return top.getValue();
+    }
 
     //traverse
     public void traverse(){
@@ -46,13 +68,28 @@ public class StackProgram {
     //java main function
     public static void main(String[] args) {
         StackProgram stack = new StackProgram();
+
+        //stack push
+        System.out.print("push: ");
         stack.push(1);
         stack.traverse();
+        System.out.print("push: ");
         stack.push(2);
         stack.traverse();
+        System.out.print("push: ");
         stack.push(3);
         stack.traverse();
+        System.out.print("push: ");
         stack.push(4);
+        stack.traverse();
+
+        //stack pop
+        System.out.print("pop: ");
+        stack.pop();
+        stack.traverse();
+
+        //stack pop
+        System.out.println("peek: "+ stack.peek());
         stack.traverse();
     }
 }
