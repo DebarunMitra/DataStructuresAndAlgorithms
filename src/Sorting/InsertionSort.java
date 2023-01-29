@@ -10,7 +10,7 @@ public class InsertionSort {
             temp = array[i];
             System.out.println("temp: "+temp);
             for (j = i-1; j >= 0 && temp < array[j]; j--) {
-                System.out.println(array[j + 1]+" <--> "+array[j]);
+//                System.out.println(array[j + 1]+" <--> "+array[j]);
                 array[j + 1] = array[j];
             }
             array[j + 1] = temp;
